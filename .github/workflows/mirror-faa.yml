@@ -1,8 +1,8 @@
 name: mirror-faa
 
+# Manual only: faa.gov returns 403 to GitHub's runners (checked 2026-10-29), so a schedule
+# would just fail weekly. Re-add `schedule: [{cron: "17 9 * * 1"}]` if that changes.
 on:
-  schedule:
-    - cron: "17 9 * * 1"  # Mondays 09:17 UTC; the FAA refreshes the file nightly
   workflow_dispatch:
 
 permissions:

@@ -9,7 +9,7 @@ The FAA's [ReleasableAircraft.zip](https://registry.faa.gov/database/ReleasableA
 - `faa.sqlite.gz` is the registry (MASTER + ACFTREF) as a ready-to-use SQLite database.
 - `faa.manifest.json` holds the data date, row count, and SHA-256. govint checks the checksum before loading.
 
-A GitHub Action rebuilds it every Monday. If the FAA blocks the Action too, the release is refreshed by hand from a browser download:
+faa.gov also blocks GitHub's servers, so the release is refreshed by hand from a browser download:
 
 ```
 govint mirror faa --file ~/Downloads/ReleasableAircraft.zip --publish NPCmillionaire/govint-data
