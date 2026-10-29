@@ -1,0 +1,21 @@
+name: mirror-faa
+
+on:
+  schedule:
+    - cron: "17 9 * * 1"  # Mondays 09:17 UTC; the FAA refreshes the file nightly
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  faa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: astral-sh/setup-uv@v6
+      - name: Install govint
+        run: uv tool install git+https://github.com/NPCmillionaire/govint
+      - name: Build and publish the FAA registry mirror
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: govint mirror faa --out out --publish "${{ github.repository }}"
